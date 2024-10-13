@@ -33,6 +33,8 @@ COPY entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh
 
+RUN echo "ServerName storage.hiemercloud.de" >> /etc/apache2/apache2.conf
+
 # Set the entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 
