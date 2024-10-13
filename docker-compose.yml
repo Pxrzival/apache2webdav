@@ -1,0 +1,24 @@
+services:
+  webdav:
+    container_name: apache2-webdav
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - WEBDAV_USER=user
+      - WEBDAV_PASS=password1
+      - APACHE_CLIENT_MAX_BODY_SIZE=500000000
+    networks:
+      - webdav
+    ports:
+      - '8888:80'
+    volumes:
+      - 'webdav:/var/www/webdav'
+
+networks:
+  webdav:
+
+volumes:
+  webdav:
+    driver: local
