@@ -27,6 +27,10 @@ COPY webdav.conf /etc/apache2/sites-enabled/webdav.conf
 
 # Create a volume for the WebDAV data
 VOLUME [ "/var/www/webdav" ]
+RUN mkdir /var/www/webdav/public
+RUN mkdir /var/www/webdav/restricted
+RUN mkdir /var/www/webdav/DavLock
+RUN touch /var/www/webdav/DavLock/db
 
 # Copy the entrypoint script
 COPY entrypoint.sh /
