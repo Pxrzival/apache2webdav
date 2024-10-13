@@ -26,8 +26,6 @@ EXPOSE 80
 # Define the WebDAV configuration file
 COPY webdav.conf /etc/apache2/sites-enabled/webdav.conf
 
-# Create a volume for the WebDAV data
-VOLUME [ "/var/www/webdav" ]
 
 # Copy the entrypoint script
 COPY entrypoint.sh /
