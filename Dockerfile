@@ -16,8 +16,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 RUN a2enmod dav dav_fs dav_lock auth_digest remoteip && \
     mkdir -p "/var/www/webdav/public" && \
     mkdir -p "/var/www/webdav/restricted" && \
-    mkdir -p "/var/www/webdav/DavLock" && \
-    touch /var/www/webdav/DavLock/db && \
+    touch /var/www/webdav/DavLock && \
     chown -R www-data:www-data /var/www/webdav && \
     rm /etc/apache2/sites-enabled/000-default.conf
 
