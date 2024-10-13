@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # Enable necessary Apache modules
-RUN a2enmod dav dav_fs dav_lock auth_digest && \
+RUN a2enmod dav dav_fs dav_lock auth_digest remoteip && \
     mkdir -p "/var/www/webdav/public" && \
     mkdir -p "/var/www/webdav/restricted" && \
     chown -R www-data:www-data /var/www/webdav && \
