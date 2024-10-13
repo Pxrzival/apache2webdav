@@ -4,11 +4,16 @@ printf "########################################\n"
 printf "# Container starting up!\n"
 printf "########################################\n"
 
-# Check for WebDav user/pass
+# Check for WebDav user/pass for Digest Authentication
 printf "# STATE: Checking for WebDav user/pass\n"
 if [ -n "$WEBDAV_USER" ] && [ -n "$WEBDAV_PASS" ]; then
-    printf "# STATE: WebDav user/pass written to /etc/apache2/webdav_credentials\n"
-    htdigest -c /etc/apache2/webdav_credentials "Restricted" $WEBDAV_USER $WEBDAV_PASS
+    if [ ! -f /etc/apache2/webdav_credentials ]; then
+        printf "# STATE: WebDav credentials file does not exist, creating it...\n"
+        htdigest -c /etc/apache2/webdav_credentials "Restricted" $WEBDAV_USER $WEBDAV_PASS
+    else
+        printf "# STATE: WebDav credentials file exists, adding/updating user...\n"
+        htdigest /etc/apache2/webdav_credentials "Restricted" $WEBDAV_USER $WEBDAV_PASS
+    fi
 else
     printf "# WARN: No WebDav user/pass were set, the \"restricted\" directory has no authentication!\n"
     sed -i "s/.*AuthType Digest.*//g" /etc/apache2/sites-enabled/webdav.conf

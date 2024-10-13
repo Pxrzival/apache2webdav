@@ -14,7 +14,7 @@ services:
     ports:
       - '8888:80'
     volumes:
-      - 'webdav:/var/www/webdav'
+      - './webdav:/var/www/webdav'
 
 networks:
   webdav:
