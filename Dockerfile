@@ -9,9 +9,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y install --no-install-recommends \
     apache2 \
     apache2-utils \
-    libapache2-mod-dav \
-    libapache2-mod-dav-fs \
-    libapache2-mod-dav-lock \
     netcat-openbsd && \
     rm -rf /var/lib/apt/lists/*
 
